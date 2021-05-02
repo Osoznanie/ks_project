@@ -5,11 +5,65 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="https://www.mercedes-benz.ua/passengercars/_jcr_content/logo.noscale.cloudsvg.imageLogo.20180312094632.svg"
+      type="image/x-icon"
+    />
     <title>AUTOTEMKA</title>
   </head>
   <body>
     {% include "navbar.html" %}
-    <h1>Info Contacts</h1>
+    <div class="map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2538.5569172311725!2d30.50481811589697!3d50.48659189264083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce0732b51179%3A0xcf5257e0b2921b82!2z0L_RgNC-0YHQv9C10LrRgiDQodGC0LXQv9Cw0L3QsCDQkdCw0L3QtNC10YDRiywgMjIsINCa0LjQtdCyLCAwMjAwMA!5e0!3m2!1sru!2sua!4v1619975074144!5m2!1sru!2sua"
+        width="100%"
+        height="450"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+      ></iframe>
+    </div>
+    <div class="container">
+      <div class="info_header">
+        <h2 style="color: rgb(219, 219, 219)">
+          Mercedes-Benz «Автомобільний центр Київ» <br />
+          Автомобільний центр Київ, офіційний дилер Daimler AG, в Україні надає
+          послуги з продажу і сервісного обслуговування легкових і комерційних
+          автомобілів Mercedes - Benz. <br />
+          <a href="tel:+0442062002">Тел: (044) 206-20-02</a><br />
+          Адрес: Киев, пр. Степана Бандери, 22
+        </h2>
+        <iframe
+          width="1200"
+          height="600"
+          src="https://www.youtube.com/embed/XYm4pU6XdcU?autoplay=1&mute=1"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
     {% include "footer.html" %}
   </body>
+  <style>
+    h1,
+    h2,
+    h3 {
+      font-family: "PT Sans", sans-serif;
+    }
+
+    .info_header {
+      margin-top: 40px;
+    }
+    h1 {
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    map {
+      padding-top: 50px;
+    }
+  </style>
 </html>

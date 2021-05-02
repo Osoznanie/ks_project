@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% load static %} {% block title %} Your Shopping
 Cart| Checkout {% endblock %} {% block content %}
+
 <div class="container">
   <div class="row1" style="margin-top: 6%">
     <div class="col-md-8">
@@ -13,9 +14,9 @@ Cart| Checkout {% endblock %} {% block content %}
         />
       </form>
     </div>
-    <div class="col-md-4">
-      <div class="page-header">Заказ</div>
-      <ul class="list-group">
+    <div class="col-md-4" style="margin-left: -400px">
+      <div class="page-header" style="padding-left: 400px">Заказ</div>
+      <ul class="list-group" style="padding-left: 300px">
         {% for item in cart %}
         <li class="list-group-item">
           {{ item.quantity }}x {{ item.product.name }}
@@ -27,13 +28,19 @@ Cart| Checkout {% endblock %} {% block content %}
           Общая стоимость: {{ cart.get_total_price }}
         </li>
       </ul>
+      <div class="shipping_info">
+        <iframe
+          width="800"
+          height="500"
+          src="https://www.youtube.com/embed/udoFnjFFWNU?autoplay=1&mute=1&loop=1"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
     </div>
   </div>
 </div>
-{% endblock %}
 
-<style>
-  .page-header {
-    font-size: 40px;
-  }
-</style>
+{% endblock %}
