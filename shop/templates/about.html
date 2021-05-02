@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="https://www.mercedes-benz.ua/passengercars/_jcr_content/logo.noscale.cloudsvg.imageLogo.20180312094632.svg"
+      type="image/x-icon"
+    />
+    <title>AUTOTEMKA</title>
+  </head>
+  <body>
+    <div class="warpper">
+      <section class="parallax">
+        <div class="parallax__body">
+          <div class="parallax__container _container">
+            <a class="back__home" href="http://127.0.0.1:8000/"
+              >Вернуться на главную</a
+            >
+            <div class="parallax__label">
+              Информационная страница салона AUTOTEMKA
+            </div>
+            <h1 class="parallax__title">
+              Лучше гор<br />могут быть только машины<br />в AUTOTEMKA
+            </h1>
+          </div>
+          <div class="parallax__images images-parallax">
+            <div class="images-parallax__item">
+              <div class="images-parallax__clouds"></div>
+            </div>
+            <div class="images-parallax__item">
+              <div class="images-parallax__mountains"></div>
+            </div>
+            <div class="images-parallax__item">
+              <div class="images-parallax__human"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="content">
+        <div class="content__container _container">
+          <h2 class="content__title">AUTOTEMKA, working since 1926</h2>
+          <div class="content__text">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+              aperiam magni consequatur impedit, accusantium ea voluptatem
+              eligendi sint, aliquam quod perspiciatis, pariatur in similique
+              sunt temporibus! Perferendis saepe eligendi harum!
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+              aperiam magni consequatur impedit, accusantium ea voluptatem
+              eligendi sint, aliquam quod perspiciatis, pariatur in similique
+              sunt temporibus! Perferendis saepe eligendi harum!
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+              aperiam magni consequatur impedit, accusantium ea voluptatem
+              eligendi sint, aliquam quod perspiciatis, pariatur in similique
+              sunt temporibus! Perferendis saepe eligendi harum!
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+              aperiam magni consequatur impedit, accusantium ea voluptatem
+              eligendi sint, aliquam quod perspiciatis, pariatur in similique
+              sunt temporibus! Perferendis saepe eligendi harum!
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+              aperiam magni consequatur impedit, accusantium ea voluptatem
+              eligendi sint, aliquam quod perspiciatis, pariatur in similique
+              sunt temporibus! Perferendis saepe eligendi harum!
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+              aperiam magni consequatur impedit, accusantium ea voluptatem
+              eligendi sint, aliquam quod perspiciatis, pariatur in similique
+              sunt temporibus! Perferendis saepe eligendi harum!
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script>
+      "use strict";
+      //Загрузка контента
+      window.onload = function () {
+        const parallax = document.querySelector(".parallax");
+
+        if (parallax) {
+          const content = document.querySelector(".parallax__container");
+          const clouds = document.querySelector(".images-parallax__clouds");
+          const mountains = document.querySelector(
+            ".images-parallax__mountains"
+          );
+          const human = document.querySelector(".images-parallax__human");
+
+          //Коф
+          const forClouds = 40;
+          const forMountains = 20;
+          const forHuman = 10;
+
+          //Скорость Анимации
+          const speed = 0.05;
+
+          //Обяввление переменных
+          let positionX = 0,
+            positionY = 0;
+          let coordXprocent = 0,
+            coordYprocent = 0;
+
+          function setMouseParallaxStyle() {
+            const distX = coordXprocent - positionX;
+            const distY = coordYprocent - positionY;
+
+            positionX = positionX + distX * speed;
+            positionY = positionY + distY * speed;
+
+            //Передача стилей
+            clouds.style.cssText = `transform: translate(${
+              positionX / forClouds
+            }%,${positionY / forClouds}%)`;
+            mountains.style.cssText = `transform: translate(${
+              positionX / forMountains
+            }%,${positionY / forMountains}%)`;
+            human.style.cssText = `transform: translate(${
+              positionX / forHuman
+            }%,${positionY / forHuman}%)`;
+
+            requestAnimationFrame(setMouseParallaxStyle);
+          }
+          setMouseParallaxStyle();
+
+          parallax.addEventListener("mousemove", function (e) {
+            //Получение ширины и высоты блока
+            const parallaxWidth = parallax.offsetWidth;
+            const parallaxHeight = parallax.offsetHeight;
+
+            //Ноль по средине
+            const coordX = e.pageX - parallaxWidth / 2;
+            const coordY = e.pageX - parallaxHeight / 2;
+
+            //Получаем проценты
+            coordXprocent = (coordX / parallaxWidth) * 100;
+            coordYprocent = (coordY / parallaxHeight) * 100;
+          });
+
+          //Parallax при скроле
+          let thresholdSet = [];
+          for (let i = 0; i <= 1.0; i += 0.005) {
+            thresholdSet.push(i);
+          }
+          const callback = function (entries, observer) {
+            const scrollTopProcent =
+              (window.pageYOffset / parallax.offsetHeight) * 100;
+            setParallaxItemsStyle(scrollTopProcent);
+          };
+          const observer = new InteresectionObserver(callback, {
+            threshold: thresholdSet,
+          });
+
+          observer.observer(document.querySelector(".content"));
+
+          function setParallaxItemsStyle(scrollTopProcent) {
+            content.style.cssText = `transform: translate(0%, -${
+              scrollTopProcent / 9
+            }%);`;
+            mountains.parentElement.style.cssText = `transform: translate(0%, -${
+              scrollTopProcent / 6
+            }%);`;
+            human.parentElement.style.cssText = `transform: translate(0%, -${
+              scrollTopProcent / 3
+            }%);`;
+          }
+        }
+      };
+    </script>
+  </body>
+</html>
+
+<style>
+  body {
+    height: 100%;
+    line-height: 1;
+    font-size: 16px;
+    background: #0b1d26;
+    color: #fff;
+    font-family: "PT Sans";
+  }
+
+  .wrapper {
+    min-height: 100%;
+  }
+
+  ._container {
+    max-width: 1000px;
+    margin: 0px auto;
+    padding: 50px 20px;
+  }
+
+  .parallax {
+    min-height: 100vh;
+  }
+
+  .parallax__body {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .parallax__container {
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+  }
+
+  .back__home {
+    color: rgb(167, 211, 125);
+    text-decoration: none;
+    padding-left: 820px;
+  }
+
+  .back__home:hover {
+    color: #fff;
+  }
+
+  .parallax__label {
+    color: #fbd784;
+    display: flex;
+    font-size: 18px;
+    letter-spacing: 6px;
+    margin: 30px 0px 30px 0px;
+    align-items: center;
+  }
+
+  .parallax__label::before {
+    flex: 0 0 70px;
+    content: "";
+    margin: 0px 30px 0px 0px;
+    background: #fbd784;
+    height: 1px;
+  }
+
+  .parallax__title {
+    font-size: 88px;
+  }
+
+  .parallax__images {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    top: -10%;
+    left: -10%;
+    z-index: 1;
+  }
+
+  .images-parallax__item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .images-parallax__clouds,
+  .images-parallax__mountains,
+  .images-parallax__human {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+  }
+
+  .images-parallax__clouds {
+    background: url(https://cdn.discordapp.com/attachments/796002715700297788/837344824255709254/clouds.jpg)
+      top / cover no-repeat;
+    top: 0;
+  }
+
+  .images-parallax__mountains {
+    background: url(https://cdn.discordapp.com/attachments/796002715700297788/837344831403065394/mountains.png)
+      top / cover no-repeat;
+    top: 15%;
+    z-index: 2;
+  }
+
+  .images-parallax__human {
+    background: url(https://cdn.discordapp.com/attachments/796002715700297788/837344828534554664/human.png)
+      top / cover no-repeat;
+    top: 45%;
+    z-index: 3;
+  }
+
+  @media (max-aspect-ratio: 3/2) {
+    .images-parallax__human {
+      background-position: 20% top;
+    }
+  }
+
+  .content {
+    background: #0b1d26;
+    position: relative;
+    z-index: 2;
+  }
+
+  .content::before {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    transform: translate(0px, -100%);
+    background: linear-gradient(180deg, rgba(11, 29, 38, 0) 5%, #0b1d26 100%);
+  }
+
+  .content__title {
+    font-size: 35px;
+    margin: 0px 0px 30px 0px;
+  }
+
+  .content__text {
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .content__text p {
+    margin: 0px 0px 30px 0px;
+  }
+
+  @media (max-width: 767px) {
+    .parallax__title {
+      font-size: 50px;
+    }
+    .parallax__label {
+      font-size: 16px;
+      margin: 0px 0px 15px 0px;
+    }
+  }
+
+  @media (max-width: 479px) {
+    .parallax__title {
+      font-size: 36px;
+    }
+    .parallax__label::before {
+      flex: 0 0 50px;
+      margin: 0px 10px 0px 0px;
+    }
+  }
+</style>

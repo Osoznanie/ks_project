@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+  <header id="header" class="header">
+    <nav class="container">
+      <div class="header__inner">
+        <a class="logo__header" href="/"
+          ><img
+            src="https://www.mercedes-benz.ua/passengercars/_jcr_content/logo.noscale.cloudsvg.imageLogo.20180312094632.svg"
+          />AUTOTEMKA</a
+        >
+        <div class="menu__header" id="menu__header">
+          <ul class="menu">
+            <li class="nav-item active">
+              <a class="nav-link" href="/"
+                >Главная <span class="sr-only"></span
+              ></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:8000/admin">Admin</a>
+            </li>
+            <li class="nav-item">
+              {% with totail_items=cart|length %} {% if cart|length > 0 %}
+              <a class="nav-link" href="{% url 'cart:cart_detail' %}">
+                Корзина <span class="badge badge-secondary"></span>
+              </a>
+              {% else %}
+              <a class="nav-link" href="{% url 'cart:cart_detail' %}">
+                Корзина пуста
+              </a>
+              {% endif %} {% endwith %}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <body>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
+
+<style>
+  body {
+    background: #2f3031;
+  }
+
+  .header {
+    background: #000;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo__header {
+    padding-top: 16px;
+
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 38px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    color: #fff;
+  }
+  .logo__header:hover {
+    color: #b0b7bc;
+    text-decoration: none;
+    transition: color 0.2s linear;
+  }
+
+  .menu__header {
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .nav-item {
+    list-style: none;
+    display: inline-block;
+  }
+
+  .nav-link {
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    margin-top: 20px;
+    margin-left: 75px;
+    line-height: 19px;
+    text-decoration: none;
+
+    color: #fff;
+  }
+
+  a:hover {
+    color: #b0b7bc;
+    text-decoration: none;
+    transition: color 0.2s linear;
+  }
+
+  .carousel-inner {
+    padding: 0 0 0 0;
+  }
+</style>
