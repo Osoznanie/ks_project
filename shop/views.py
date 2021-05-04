@@ -50,3 +50,6 @@ def about(request):
 
 def contacts(request):
     return render(request, 'contacts.html',{})
+
+def mmemedia(request):
+    return render(request, 'mmemedia.html',{})

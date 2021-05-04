@@ -16,4 +16,5 @@ urlpatterns = [
     path('<int:id>/<str:slug>/', product_detail, name='product_detail'),
     path('about.html', views.about, name="about"),
     path('contacts.html', views.contacts, name="contacts"),
+    path('mmemedia.html', views.mmemedia, name="mmemedia"),
 ]

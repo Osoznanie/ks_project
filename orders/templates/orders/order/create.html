@@ -16,7 +16,7 @@ Cart| Checkout {% endblock %} {% block content %}
     </div>
     <div class="col-md-4" style="margin-left: -400px">
       <div class="page-header" style="padding-left: 400px">Заказ</div>
-      <ul class="list-group" style="padding-left: 300px">
+      <ul class="list-group" style="padding-left: 300px; margin-bottom: 30px">
         {% for item in cart %}
         <li class="list-group-item">
           {{ item.quantity }}x {{ item.product.name }}
@@ -32,7 +32,7 @@ Cart| Checkout {% endblock %} {% block content %}
         <iframe
           width="800"
           height="500"
-          src="https://www.youtube.com/embed/udoFnjFFWNU?autoplay=1&mute=1&loop=1"
+          src="https://www.youtube.com/embed/udoFnjFFWNU?controls=0&autoplay=1&mute=1&loop=1"
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
